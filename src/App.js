@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { Name } from './components/Name';
+import { Counter } from './components/Counter';
+import { rootReducer } from './redux/reducers/reducers';
 
-function App() {
+
+const INITIAL_STATE = {};
+
+const store = createStore(rootReducer, INITIAL_STATE);
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Counter />
+      <Name />
+    </Provider>
   );
 }
-
-export default App;
