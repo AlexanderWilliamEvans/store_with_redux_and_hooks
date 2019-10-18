@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 export function Counter() {
+
+    const t = [];
     const { count, name } = useSelector(state => ({
       ...state.counterReducer,
       ...state.nameReducer
@@ -20,7 +22,7 @@ export function Counter() {
         type: "DECREMENT_COUNT"
       });
     }
-  
+
     return (
       <>
         <h2>Counter: {count}</h2>
