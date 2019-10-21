@@ -1,0 +1,6 @@
+
+
+//Actiontypes for Merchandise
+export const LIST_MERCHANDISE = 'LIST_MERCHANDISE';
+export const FILTER_MERCHANDISE = 'FILTER_MERCHANDISE';
+export const SEARCH_IN_MERCHANDISE = 'SEARCH_IN_MERCHANDISE';

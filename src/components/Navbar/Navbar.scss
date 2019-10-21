@@ -1,0 +1,48 @@
+.bontrax-navbar {
+    min-height: 3em;
+    padding:1em;
+    background-color:black;
+    opacity:0.6;
+    z-index:99999999999;
+    clear:both;
+    top:0;
+}
+
+.bontrax-navbar h3 { 
+    float:right;
+    margin-right:3em;
+    margin-top:0.3em;
+
+}
+
+.bontrax-navbar ul {
+    float:left;
+    margin-left: 1em;
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+
+.bontrax-navbar li {
+    float:left;
+    margin:0.25em;
+    font-size:medium;
+    border-right:1px solid white;
+}
+
+.bontrax-navbar li:hover {
+    background:white;
+
+    a{
+        color:black;
+    }
+}
+
+.bontrax-navbar li a {
+    display:block;
+    color: white;
+    text-align:center;
+    padding:16px;
+    text-decoration:none;
+}
