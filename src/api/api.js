@@ -1,5 +1,6 @@
 
 export const fetchMerchandise = () => {
+    debugger;
     return fetch('https://jsonplaceholder.typicode.com/users')
       .then(result => result.json())
       .then(data => {

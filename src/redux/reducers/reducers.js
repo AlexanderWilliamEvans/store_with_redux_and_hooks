@@ -1,6 +1,6 @@
 import React from "react";
 import { combineReducers } from "redux";
-
+import { MerchandiseReducer } from './MerchandiseReducer';
 
 
  function counterReducer(state = { count: 0 }, action) {
@@ -34,6 +34,7 @@ import { combineReducers } from "redux";
 
 export const rootReducer = combineReducers({
     counterReducer,
-    nameReducer
+    nameReducer,
+    MerchandiseReducer
   });
   

@@ -4,10 +4,11 @@ import * as api from '../../api/api';
 import { INITIAL_STATE } from '../reducers/Index';
 
 
-export function MerchandiseReducer(state =INITIAL_STATE, action){
+
+export function CartReducer(state =INITIAL_STATE, action){
     debugger;
     switch(action.type){
-        case types.LIST_MERCHANDISE:
+        case types.LIST_CART:
             return(api.fetchMerchandise().then(res =>(
                 {
                     ...state,
@@ -16,12 +17,23 @@ export function MerchandiseReducer(state =INITIAL_STATE, action){
             )
             ))
        
-        case types.FILTER_MERCHANDISE:
+        case types.ADD_TO_CART:
             return({
                 ...state,
 
             });
 
+        case types.REMOVE_FROM_CART:
+        return({
+            ...state,
+
+        });
+
+        case types.CLEAR_CART:
+            return({
+                ...state,
+
+        });
         default:
             return state;
     }

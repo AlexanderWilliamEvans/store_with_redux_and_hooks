@@ -1,4 +1,5 @@
-import React, { Framgent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -17,10 +18,12 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import { fetchMerchandise } from '../../api/api';
+import { Messages } from '../Messages/Messages';
+import * as types from '../../api/api';
 
 const useStyles = makeStyles(theme =>({
   root: {
-    width: '50%',
+    width: '100%',
     overflowX: 'auto',
   },
   table: {
@@ -43,7 +46,7 @@ const useStyles = makeStyles(theme =>({
 }));
 
 
- const getRows = async() => {
+ /*const getRows = async() => {
     const data = await fetchMerchandise();
     const table =[];
     let key;
@@ -67,7 +70,8 @@ const useStyles = makeStyles(theme =>({
     }
     debugger;
     return table;
-};
+};*/
+
 
 
 export function Merchandise() {
@@ -75,33 +79,55 @@ export function Merchandise() {
 
     const classes = useStyles();
 
-    const [rows, setRows] = useState(null);
-    const [filter, toggleFilter] =useState(false);
+    const  rows  = useSelector(state => (state.merchandise));
+    const dispatch = useDispatch();
+
+
+    const getRows = () => {
+      debugger;
+      dispatch({ type: 'LIST_MERCHANDISE'})
+    }
+
+    const search = (e) => {
+      dispatch({type:'SEARCH_IN_MERCHANDISE', payload: e.target.value.toString()});
+    }
+
+    const filter = (e) => {
+      dispatch({type:'FILTER_MERCHANDISE', payload: e.target.value.toString()});
+    }
 
     useEffect(() => {
         let ignore = false;
         async function fetchData() {
-          const result = await fetchMerchandise();
+         // await getRows();
+         const r = await getRows();
+         debugger;
           if(!ignore){
-            setRows(result);
+          
+             
           }
         }
-        fetchData();
+        debugger;
+       fetchData();
         return () => { ignore = true; }
       }, []);
 
 
 
-    if(rows === null || rows === undefined){
+    if(rows === null || rows === undefined || rows.length > 0){
         return(
-            <Container fixed/>
+            <Container fixed>
+             <Messages/>
+            </Container>
    
     );
 }
     else{
         return(
             <Container fixed style={{marginTop:'5em'}}>
-             <TextField id="outlined-full-width" label="Label" style={{ margin: 8 }} placeholder="Search for a specific good..." helperText="Full width!" fullWidth margin="normal" variant="outlined" InputLabelProps={{shrink: true,}}/>
+             <TextField id="outlined-full-width" label="Label" style={{ margin: 8 }} placeholder="Sök efter en specifik person..." fullWidth margin="normal" variant="outlined" InputLabelProps={{shrink: true,}}/>
+             <br/>
+             <br/>
              <Paper className={classes.root}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
@@ -127,7 +153,7 @@ export function Merchandise() {
                         ))}
                         </TableBody>
                     </Table>
-                </Paper> 
+                </Paper>  
             </Container>
         );
        

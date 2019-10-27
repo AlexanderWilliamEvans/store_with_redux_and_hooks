@@ -5,10 +5,9 @@ import { Provider, useSelector, useDispatch } from "react-redux";
 import { Name } from './components/Name';
 import { Counter } from './components/Counter';
 import  Navbar  from './components/Navbar/Navbar';
-import { rootReducer } from './redux/reducers/reducers';
+import { rootReducer, INITIAL_STATE } from './redux/reducers/Index';
 
 
-const INITIAL_STATE = {};
 
 const store = createStore(rootReducer, INITIAL_STATE);
 
